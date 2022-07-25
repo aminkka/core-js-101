@@ -35,8 +35,9 @@ function findElement(arr, value) {
  *    2 => [ 1, 3 ]
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
-function generateOdds(/* len */) {
-  throw new Error('Not implemented');
+function generateOdds(len) {
+  const arr = new Array(len * 2).fill(1);
+  return arr.map((item, index) => index).filter((item) => item % 2 !== 0);
 }
 
 
@@ -244,15 +245,13 @@ function getMovingSum(/* arr */) {
  * @return {array}
  *
  * Example :
- * [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 2, 4, 6, 8, 10 ]
+ * [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ ,2 4, 6, 8, 10 ]
  * [ 'a', 'b', 'c' , null ]  => [ "b", null ]
  * [ "a" ] => []
  */
 function getSecondItems(arr) {
   return arr.filter((item, index) => {
-    if (index !== 0 && index % 2 !== 0) {
-      return item;
-    }
+    if (index % 2 !== 0) return item;
     return '';
   });
 }
@@ -272,8 +271,8 @@ function getSecondItems(arr) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  return arr.map((item, index) => Array.from(new Array(index + 1)).fill(item)).flat();
 }
 
 
@@ -421,8 +420,16 @@ function toStringList(arr) {
  *      { country: 'Russia',  city: 'Saint Petersburg' }
  *    ]
  */
-function sortCitiesArray(/* arr */) {
-  throw new Error('Not implemented');
+function sortCitiesArray(arr) {
+  return arr.sort((a, b) => {
+    if (a.country > b.country) {
+      return 1;
+    }
+    if (a.country < b.country) {
+      return -1;
+    }
+    return a.city > b.city ? 1 : -1;
+  });
 }
 
 /**
